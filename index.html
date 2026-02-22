@@ -140,7 +140,8 @@
 
     @media (max-width: 900px){
       .grid{grid-template-columns:1fr}
-      header{position:relative}
+      /* keep header sticky on mobile as well */
+      header{position:sticky; top:0;}
       /* iOS/Android: fixed backgrounds are часто глючні — вимикаємо */
       .hero::before{background-attachment: scroll;}
     }
@@ -182,9 +183,21 @@
       #siteHeader.open .navlinks{
         display:flex;
         width:100%;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
         margin-top: 10px;
+
+        /* dropdown style */
+        background: rgba(10,18,35,.98);
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 16px;
+        padding: 16px;
+
+        /* limit height so it does not cover whole screen */
+        max-height: 60vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,.4);
       }
 
       /* language buttons row */
