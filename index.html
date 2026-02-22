@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="metaTitle">Degen-Fechten — Samstag 10:00–13:00</title>
+  <meta id="metaDescription" name="description" content="Offene Degen-Fechtsektion für Jugendliche, Erwachsene und Veteran:innen. Jeden Samstag 10:00–13:00 in der Schulturnhalle. Keine Vorkenntnisse nötig – nur Lust auf Bewegung." />
+
+  <!-- Canonical + hreflang (Query-Parameter ?lang=de|en|uk) -->
+  <link id="canonicalLink" rel="canonical" href="" />
+  <link id="altDe" rel="alternate" hreflang="de" href="" />
+  <link id="altEn" rel="alternate" hreflang="en" href="" />
+  <link id="altUk" rel="alternate" hreflang="uk" href="" />
+  <link id="altX" rel="alternate" hreflang="x-default" href="" />
+
+  <!-- Open Graph (під соцмережі) -->
+  <meta id="ogTitle" property="og:title" content="Degen-Fechten — Samstag 10:00–13:00" />
+  <meta id="ogDescription" property="og:description" content="Offene Sektion für Jugendliche, Erwachsene und Veteran:innen. Keine Vorkenntnisse nötig – nur Lust auf Bewegung." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a2f;
+      --muted:#a9b3c7;
+      --text:#eef2ff;
+      --accent:#ff7a00;
+      --accent2:#4fd1c5;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1040px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{color:inherit}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px;}
+
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.68);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      z-index: 10;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 24px;
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+
+    .badge{
+      font-size:12px;
+      color:rgba(255,255,255,.88);
+      padding:6px 10px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+    }
+
+    .nav a{
+      text-decoration:none;
+      color: rgba(255,255,255,.86);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .navlinks{display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+
+    .cta{
+      background: linear-gradient(90deg, var(--accent), #ff9a3d);
+      border:none;
+      color:#141414;
+      font-weight:800;
+      padding:10px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: 0 10px 24px rgba(255,122,0,.22);
+    }
+
+    .cta:active{transform: translateY(1px)}
+
+    .hero{
+      position:relative;
+      padding: 60px 0 40px;
+      overflow:hidden;
+    }
+
+        /* Silhouette background */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(11,18,32,.65), rgba(11,18,32,.80)),
+        url('images/fehto_backgr1.jpg') center/cover no-repeat;
+      filter: grayscale(100%) contrast(1.1);
+      opacity:.85;
+      background-attachment: fixed;
+      z-index:0;
+    }
+
+    .hero > *{
+      position:relative;
+      z-index:1;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      header{position:relative}
+      /* iOS/Android: fixed backgrounds are часто глючні — вимикаємо */
+      .hero::before{background-attachment: scroll;}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .card-inner{padding: 22px;}
+
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      font-size:13px;
+      color: rgba(255,255,255,.84);
+    }
+
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(79,209,197,.14);
+    }
+
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.08;
+    }
+
+    .lead{color: rgba(255,255,255,.82); font-size: 16px; margin: 0 0 16px; max-width: 64ch;}
+
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin: 14px 0 0;}
+
+    .pill{
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.88);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+
+    .pill b{color: var(--text)}
+
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px;}
+
+    .btn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-weight:800;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn.primary{
+      border: none;
+      background: linear-gradient(90deg, var(--accent), #ff9a3d);
+      color:#141414;
+      box-shadow: 0 10px 24px rgba(255,122,0,.22);
+    }
+
+    .btn:hover{filter:brightness(1.05)}
+
+    .muted{color: var(--muted)}
+
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      height:100%;
+    }
+
+    .mini{
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .mini h3{margin:0 0 6px; font-size:16px}
+    .mini p{margin:0; color: rgba(255,255,255,.78); font-size: 14px}
+
+    section{padding: 12px 0}
+
+    .section-title{font-size: 22px; margin: 0 0 10px;}
+
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px){
+      .cols{grid-template-columns:1fr}
+    }
+
+    ul{margin:10px 0 0 18px; color: rgba(255,255,255,.84)}
+    li{margin:6px 0}
+
+    .faq details{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 10px 0;
+    }
+
+    .faq summary{cursor:pointer; font-weight:800}
+
+    footer{
+      padding: 26px 0 40px;
+      color: rgba(255,255,255,.70);
+      font-size: 13px;
+    }
+
+    .note{
+      border-left: 3px solid rgba(255,122,0,.8);
+      padding-left: 12px;
+      color: rgba(255,255,255,.78);
+      margin-top: 12px;
+    }
+
+    .copy{
+      display:inline-flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .tinybtn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .tinybtn:active{transform: translateY(1px)}
+    .langbtn.active{outline:2px solid rgba(255,122,0,.75); outline-offset:2px}
+  
+
+    /* === PRINT (A4 flyer) === */
+    .print-only{display:none}
+    .no-print{display:initial}
+
+    @media print{
+      @page{ size: A4; margin: 12mm; }
+      body{
+        background:#ffffff !important;
+        color:#111827 !important;
+      }
+      header, .note, .copy button, .actions, .navlinks, .cta, .tinybtn, .no-print, .faq, #top .side{display:none !important;}
+      .wrap{max-width:none; padding:0 !important;}
+      .card{box-shadow:none !important; border:1px solid #e5e7eb !important; background:#ffffff !important;}
+      .card-inner{padding:16px !important;}
+      h1{font-size:24px !important; color:#111827 !important;}
+      .lead, .muted, ul, li{color:#111827 !important;}
+      a{color:#111827 !important; text-decoration:none !important;}
+      .print-only{display:block !important;}
+      .print-grid{display:grid !important; grid-template-columns: 1.2fr .8fr; gap:14px; align-items:start;}
+      .print-qr{border:1px solid #e5e7eb; border-radius:14px; padding:12px; text-align:center;}
+      .print-qr img{width:220px; height:220px; object-fit:contain;}
+      .pillrow{gap:8px !important;}
+      .pill{border-color:#e5e7eb !important; background:#f9fafb !important; color:#111827 !important;}
+    }
+
+    /* Print button */
+    .printbtn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight:800;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+    }
+    .printbtn:hover{filter:brightness(1.05)}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="images/merkur_kleve.png" alt="Merkur 95 Kleve e.V. Logo" style="height:64px; width:auto; display:block;" />
+    </div>
+    <div class="navlinks">
+      <button class="tinybtn" onclick="setLang('de')">DE</button>
+      <button class="tinybtn" onclick="setLang('en')">EN</button>
+      <button class="tinybtn" onclick="setLang('uk')">UA</button>
+      <a href="#about" data-i18n="nav_about">Über die Sektion</a>
+      <a href="#how" data-i18n="nav_join">Mitmachen</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="#join" data-i18n="nav_signup">Anmelden</a>
+      <button class="printbtn no-print" type="button" id="printBtn" data-i18n="btn_print">🖨️ A4 + QR drucken</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="grid">
+      <div class="card">
+        <div class="card-inner">
+          <div class="kicker"><span class="dot"></span><span><span data-i18n="hero_kicker">Offene Sektion für alle</span></span></div>
+          <h1><span data-i18n="hero_title">Neue Degen‑Fechtsektion für alle Interessierten</span></h1>
+          <p class="lead" data-i18n="hero_lead"><b>Bei der Fechtsektion des Vereins „Merkur 95 e.V.“ – jeden Samstag 10:00–13:00</b>. Wir laden Jugendliche, Erwachsene, Veteran:innen und Senior:innen ein. <b>Keine Vorkenntnisse nötig</b> – nur Lust, aktiv zu sein und Neues zu lernen. Individuelle Belastung. Gute Laune fürs ganze Wochenende!</p>
+
+          <div class="pillrow">
+            <span class="pill">🕙 <b>Коли:</b> субота 10:00–13:00</span>
+            <span class="pill">📍 <b>Де:</b> спортзал школи (адреса нижче)</span>
+            <span class="pill">👥 <b>Хто:</b> підлітки / дорослі / ветерани</span>
+            <span class="pill">🎯 <b>Рівень:</b> будь-який (з нуля можна)</span>
+          </div>
+
+          <div class="actions" id="join">
+            <!-- TODO: заміни посилання на Google Form / Calendly / Telegram-чат -->
+            <a class="btn primary" href="#" id="signupLink">✅ Записатися на перше тренування</a>
+            <!-- TODO: заміни номер на свій -->
+            <a class="btn" href="https://wa.me/" target="_blank" rel="noreferrer">💬 Написати в WhatsApp</a>
+            <a class="btn" href="mailto:" id="emailLink">✉️ Написати e-mail</a>
+          </div>
+
+          <div class="note">
+            <b>Порада:</b> якщо ти не впевнений, чи «це твоє» — просто прийди раз. Подивишся, спробуєш базові вправи — повністю безпечно, без зобовʼязань.
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="mini">
+          <h3>Що буде на занятті</h3>
+          <p>Розминка, базова робота ніг, дистанція, координація, прості технічні вправи, ігрові заняття та безпечна практика в парах.</p>
+        </div>
+        <div class="mini">
+          <h3>Безпека</h3>
+          <p>Поясню правила, дам структуру та контроль темпу. Для новачків — поступове входження.</p>
+        </div>
+        <div class="mini">
+          <h3>Екіпірування</h3>
+          <p>На старті достатньо спортивної форми та взуття. Про шпаги/маски/захист — підкажу, як оптимально вирішити.</p>
+        </div>
+        <div class="mini">
+          <h3>Контакти (шаблон)</h3>
+          <p class="muted">Організатор: <b>Секція фехтування</b><br />Телефон/WhatsApp: <span id="phoneText">+49…</span><br />Email: <span id="emailText">your@email</span></p>
+          <div class="copy" style="margin-top:10px">
+            <button class="tinybtn" data-copy="phone">📋 Скопіювати телефон</button>
+            <button class="tinybtn" data-copy="email">📋 Скопіювати e-mail</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">Про секцію</h2>
+    <div class="cols">
+      <div class="card"><div class="card-inner">
+        <h3 style="margin:0 0 6px">Для кого</h3>
+        <p class="muted" style="margin:0">Для всіх: підлітків, дорослих, ветеранів і старших людей. Рівень підготовки не має значення.</p>
+        <ul>
+          <li>Хочеш новий вид активності, який «втягує» мозок і тіло</li>
+          <li>Потрібні координація, реакція, витривалість і гарна постава</li>
+          <li>Цікавить спортивний дух без токсичної конкуренції</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-inner">
+        <h3 style="margin:0 0 6px">Формат</h3>
+        <p class="muted" style="margin:0">Секція з регулярними тренуваннями щосуботи. За бажанням групи з часом можна додати додаткові зустрічі.</p>
+        <ul>
+          <li>Бойові практики з першого дня</li>
+          <li>Старт із бази: техніка, робота ніг, дистанція</li>
+          <li>Поступовий перехід до спарингів (для тих, хто готовий)</li>
+          <li>Опційно: підготовка до аматорських стартів і ветеранських турнірів</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2 class="section-title">Як приєднатися</h2>
+    <div class="card"><div class="card-inner">
+      <ol style="margin:0 0 0 18px; color: rgba(255,255,255,.86)">
+        <li style="margin:8px 0">Натисни «Записатися» (нижче) або напиши нам в WhatsApp.</li>
+        <li style="margin:8px 0">Отримаєш коротку відповідь: підтвердження, адреса зали, що взяти з собою.</li>
+        <li style="margin:8px 0">Приходь у суботу до 10:00 (краще на 10–15 хв раніше).</li>
+      </ol>
+      <div class="actions" style="margin-top:14px">
+        <a class="btn primary" href="#" id="signupLink2">✅ Записатися</a>
+        <a class="btn" href="#location">📍 Де саме (адреса)</a>
+      </div>
+      <p class="muted" style="margin:14px 0 0">* Зараз це сторінка-анонс. Я можу додати форму реєстрації, календар, карту, галерею та блок «Новини/оновлення» — якщо захочеш.</p>
+    </div></div>
+  </section>
+
+  <section id="location">
+    <h2 class="section-title">Локація</h2>
+    <div class="cols">
+      <div class="card"><div class="card-inner">
+        <h3 style="margin:0 0 6px">Спортзал школи</h3>
+        <p class="muted" style="margin:0 0 10px">Заповни точну адресу та посилання на Google Maps:</p>
+        <p style="margin:0 0 6px"><b>Адреса:</b> <span id="addressText">[вкажи адресу школи тут]</span></p>
+        <p style="margin:0"><b>Карта:</b> <a href="#" id="mapsLink" target="_blank" rel="noreferrer">[встав посилання Google Maps]</a></p>
+        <div class="copy" style="margin-top:12px">
+          <button class="tinybtn" data-copy="address">📋 Скопіювати адресу</button>
+          <button class="tinybtn" data-copy="maps">🔗 Скопіювати посилання на карту</button>
+        </div>
+      </div></div>
+
+      <div class="card"><div class="card-inner">
+        <h3 style="margin:0 0 6px">Що взяти з собою</h3>
+        <ul>
+          <li>Спортивний одяг</li>
+          <li>Змінне взуття (зал)</li>
+          <li>Вода</li>
+          <li>За бажанням: легкі рукавички/наколінники</li>
+        </ul>
+        <p class="muted" style="margin:10px 0 0">Екіпірування для фехтування обговоримо окремо — підкажу бюджетні та адекватні варіанти.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <h2 class="section-title">FAQ</h2>
+
+    <details open>
+      <summary>Можна прийти «з нуля»?</summary>
+      <p class="muted">Так. Ми починаємо з базових рухів, правил безпеки, позиції та роботи ніг. Далі — поступове ускладнення.</p>
+    </details>
+
+    <details>
+      <summary>Якого віку учасники?</summary>
+      <p class="muted">Підлітки, дорослі, ветерани/старші люди — секція для всіх. Підберемо темп під групу.</p>
+    </details>
+
+    <details>
+      <summary>Скільки коштує?</summary>
+      <p class="muted">Тут вставиш свою модель: безкоштовно на старті / донейшн / фіксована оплата. (Я залишила це як шаблон, бо ти ще не вказував.)</p>
+    </details>
+
+    <details>
+      <summary>Чи потрібна шпага/маска з першого дня?</summary>
+      <p class="muted">Ні. Спершу — загальна підготовка і базова техніка. Далі підкажу, що саме купувати, щоб не витрачати зайвого.</p>
+    </details>
+  </section>
+
+  <footer>
+    <div class="card"><div class="card-inner">
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center; justify-content:space-between">
+        <div>
+          <b>Контакти:</b> <span id="footerContacts" class="muted">WhatsApp +49… · your@email</span>
+          <div class="muted">© <span id="year"></span> Секція фехтування на шпагах</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#top">⬆️ Вгору</a>
+          <a class="btn primary" href="#" id="signupLink3">✅ Записатися</a>
+        </div>
+      </div>
+      <div class="note">
+        Якщо хочеш, я зроблю версії сторінки: <b>німецькою</b> (для місцевих), <b>англійською</b>, додам <b>QR‑код</b> та «візитку» для друку A4.
+      </div>
+
+      <!-- PRINT-FRIENDLY A4 FLYER (visible only in print) -->
+      <div class="print-only" id="printFlyer" style="margin-top:14px">
+        <div class="print-grid">
+          <div>
+            <div style="font-weight:800; font-size:14px; margin-bottom:6px">🤺 Секція фехтування на шпагах</div>
+            <div style="font-weight:900; font-size:22px; line-height:1.15; margin:0 0 8px">Тренування щосуботи 10:00–13:00</div>
+            <div style="margin:0 0 10px">На базі секції фехтування клубу <b>Merkur 95 e.V.</b> — підлітки, дорослі, ветерани та старші люди. <b>З нуля можна</b>. Безпечно та з індивідуальним навантаженням.</div>
+
+            <div class="pillrow" style="margin:10px 0 0">
+              <span class="pill">🕙 <b>Коли:</b> субота 10:00–13:00</span>
+              <span class="pill">📍 <b>Де:</b> <span id="printAddress">[адреса]</span></span>
+            </div>
+
+            <div style="margin-top:10px; font-weight:800">Контакти:</div>
+            <div style="margin-top:4px">
+              WhatsApp: <b id="printPhone">+49…</b><br/>
+              Email: <b id="printEmail">your@email</b>
+            </div>
+
+            <div style="margin-top:10px; color:#111827">
+              <b>Що буде на занятті:</b> розминка, робота ніг, дистанція, координація, прості технічні вправи, ігрові заняття та безпечна практика в парах.
+            </div>
+          </div>
+
+          <div class="print-qr">
+            <div style="font-weight:900; margin-bottom:8px">Скануй QR для запису</div>
+            <img id="qrImg" alt="QR code" src="" />
+            <div style="margin-top:8px; font-size:12px; color:#111827">або відкрий: <span id="printUrl">(URL)</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div></div>
+  </footer>
+
+</main>
+
+<script>
+
+  const translations = {
+    de: {
+      meta_title: "Degen-Fechten — Samstag 10:00–13:00",
+      meta_desc: "Offene Degen-Fechtsektion für Jugendliche, Erwachsene und Veteran:innen. Jeden Samstag 10:00–13:00 in der Schulturnhalle. Keine Vorkenntnisse nötig – nur Lust auf Bewegung.",
+      og_title: "Degen-Fechten — Samstag 10:00–13:00",
+      og_desc: "Offene Sektion für Jugendliche, Erwachsene und Veteran:innen. Keine Vorkenntnisse nötig – nur Lust auf Bewegung.",
+      nav_about: "Über die Sektion",
+      nav_join: "Mitmachen",
+      nav_signup: "Anmelden",
+      badge_time: "Samstag 10:00–13:00",
+      btn_print: "🖨️ A4 + QR drucken",
+      hero_title: "Neue Degen‑Fechtsektion für alle Interessierten",
+      hero_kicker: "Offene Sektion für alle",
+      hero_lead: "<b>Bei der Fechtsektion des Vereins „Merkur 95 e.V.“ – jeden Samstag 10:00–13:00</b>. Wir laden Jugendliche, Erwachsene, Veteran:innen und Senior:innen ein. <b>Keine Vorkenntnisse nötig</b> – nur Lust, aktiv zu sein und Neues zu lernen. Individuelle Belastung. Gute Laune fürs ganze Wochenende!"
+    },
+    en: {
+      meta_title: "Epee Fencing — Saturday 10:00–13:00",
+      meta_desc: "Open epee fencing section for teens, adults and veterans. Every Saturday 10:00–13:00 in the school gym. No experience required — just a desire to stay active.",
+      og_title: "Epee Fencing — Saturday 10:00–13:00",
+      og_desc: "Open section for teens, adults and veterans. No experience required — just a desire to stay active.",
+      nav_about: "About",
+      nav_join: "How to Join",
+      nav_signup: "Sign Up",
+      badge_time: "Saturday 10:00–13:00",
+      btn_print: "🖨️ Print A4 + QR",
+      hero_title: "New Epee Fencing Section — Open for Everyone",
+      hero_kicker: "Open section for everyone",
+      hero_lead: "<b>Based at the fencing section of “Merkur 95 e.V.” — every Saturday 10:00–13:00</b>. Teens, adults, veterans and seniors are welcome. <b>No skills required</b> — only the desire to be active and learn something new. Individual load. Great mood for the whole weekend!"
+    },
+    uk: {
+      meta_title: "Секція фехтування на шпагах — субота 10:00–13:00",
+      meta_desc: "Відкрита секція фехтування на шпагах для підлітків, дорослих та ветеранів. Субота 10:00–13:00 у спортзалі школи. Без вимог до навичок — потрібне лише бажання рухатися.",
+      og_title: "Секція фехтування на шпагах — субота 10:00–13:00",
+      og_desc: "Відкрита секція для підлітків, дорослих та ветеранів. Без вимог до навичок — потрібне лише бажання активно проводити час.",
+      nav_about: "Про секцію",
+      nav_join: "Як приєднатися",
+      nav_signup: "Записатися",
+      badge_time: "Субота 10:00–13:00",
+      btn_print: "🖨️ Друк A4 + QR",
+      hero_title: "Відкривається секція з фехтування на шпагах для всіх бажаючих",
+      hero_kicker: "Відкрита секція для всіх охочих",
+      hero_lead: "<b>На базі секції фехтування клубу „Merkur 95 e.V.“ — щосуботи з 10:00 до 13:00</b>. Запрошуємо підлітків, дорослих, ветеранів і старших людей. <b>Вимог до навичок немає</b> — потрібне лише бажання активно проводити час і вчитись новому. Індивідуальне фізичне навантаження. Гарний настрій на всі вихідні!"
+    }
+  };
+
+  function setLang(lang){
+    if(!['de','en','uk'].includes(lang)) return;
+    localStorage.setItem('lang', lang);
+    applyLang(lang);
+  }
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      const val = translations[lang] && translations[lang][key];
+      if(!val) return;
+      // allow rich text for a few blocks
+      if (['hero_lead'].includes(key)) el.innerHTML = val;
+      else el.textContent = val;
+    });
+
+    // meta + OG
+    const mt = translations[lang]?.meta_title;
+    const md = translations[lang]?.meta_desc;
+    const ogt = translations[lang]?.og_title || mt;
+    const ogd = translations[lang]?.og_desc || md;
+
+    if (mt) document.title = mt;
+    const metaDesc = document.getElementById('metaDescription');
+    if (metaDesc && md) metaDesc.setAttribute('content', md);
+    const ogTitle = document.getElementById('ogTitle');
+    const ogDesc = document.getElementById('ogDescription');
+    if (ogTitle && ogt) ogTitle.setAttribute('content', ogt);
+    if (ogDesc && ogd) ogDesc.setAttribute('content', ogd);
+
+    // URL + hreflang
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url.toString());
+
+    const base = `${window.location.origin}${window.location.pathname}`;
+    const mk = (l)=> `${base}?lang=${l}`;
+    const canonical = document.getElementById('canonicalLink');
+    if (canonical) canonical.href = mk(lang);
+    const aDe = document.getElementById('altDe'); if (aDe) aDe.href = mk('de');
+    const aEn = document.getElementById('altEn'); if (aEn) aEn.href = mk('en');
+    const aUk = document.getElementById('altUk'); if (aUk) aUk.href = mk('uk');
+    const aX  = document.getElementById('altX');  if (aX)  aX.href  = mk('de');
+  }
+
+  function getInitialLang(){
+    const url = new URL(window.location.href);
+    const q = url.searchParams.get('lang');
+    if (q && ['de','en','uk'].includes(q)) return q;
+    const saved = localStorage.getItem('lang');
+    if (saved && ['de','en','uk'].includes(saved)) return saved;
+    const nav = (navigator.language || 'de').slice(0,2).toLowerCase();
+    if (nav==='en') return 'en';
+    if (nav==='uk') return 'uk';
+    return 'de';
+  }
+
+  const initialLang = getInitialLang();
+  localStorage.setItem('lang', initialLang);
+  applyLang(initialLang);
+
+
+  // === Налаштуй ці поля під себе (1 хв) ===
+  const CONFIG = {
+    phone: "+49XXXXXXXXXXX",              // TODO: твій номер у форматі +49...
+    email: "your@email.com",             // TODO: твій email
+    signupUrl: "https://example.com",    // TODO: Google Form / Calendly / Telegram invite
+    address: "Школа №…, вул. …, місто …",  // TODO: точна адреса
+    mapsUrl: "https://maps.google.com/?q=...", // TODO: посилання Google Maps
+
+    // QR буде вести сюди (за замовчуванням signupUrl; можна замінити на сторінку або групу)
+    qrDataUrl: "" // TODO optional: якщо пусто — використає signupUrl
+  };
+
+  // Підстановка в інтерфейс
+  document.getElementById('phoneText').textContent = CONFIG.phone;
+  document.getElementById('emailText').textContent = CONFIG.email;
+  document.getElementById('footerContacts').textContent = `WhatsApp ${CONFIG.phone} · ${CONFIG.email}`;
+  document.getElementById('emailLink').href = `mailto:${CONFIG.email}`;
+
+  document.getElementById('addressText').textContent = CONFIG.address;
+  const mapsLink = document.getElementById('mapsLink');
+  mapsLink.href = CONFIG.mapsUrl;
+  mapsLink.textContent = "Відкрити Google Maps";
+
+  // CTA
+  for (const id of ['signupLink','signupLink2','signupLink3']) {
+    const el = document.getElementById(id);
+    if (el) el.href = CONFIG.signupUrl;
+  }
+
+  // WhatsApp кнопка (якщо телефон заданий)
+  const waBtn = document.querySelector('a[href="https://wa.me/"]');
+  if (waBtn && CONFIG.phone && CONFIG.phone.startsWith('+')) {
+    const digits = CONFIG.phone.replace(/\D/g,'');
+    waBtn.href = `https://wa.me/${digits}`;
+  }
+
+  // Copy-to-clipboard
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      toast('Скопійовано ✅');
+    }catch(e){
+      // fallback
+      const ta=document.createElement('textarea');
+      ta.value=text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      toast('Скопійовано ✅');
+    }
+  }
+
+  function toast(msg){
+    const t=document.createElement('div');
+    t.textContent=msg;
+    t.style.position='fixed';
+    t.style.bottom='18px';
+    t.style.left='50%';
+    t.style.transform='translateX(-50%)';
+    t.style.padding='10px 12px';
+    t.style.borderRadius='12px';
+    t.style.background='rgba(15,26,47,.92)';
+    t.style.border='1px solid rgba(255,255,255,.14)';
+    t.style.color='rgba(255,255,255,.92)';
+    t.style.boxShadow='0 12px 28px rgba(0,0,0,.35)';
+    t.style.zIndex='9999';
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(), 1400);
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const what = btn.getAttribute('data-copy');
+      if (what==='phone') return copyText(CONFIG.phone);
+      if (what==='email') return copyText(CONFIG.email);
+      if (what==='address') return copyText(CONFIG.address);
+      if (what==='maps') return copyText(CONFIG.mapsUrl);
+    });
+  });
+
+  // QR + Print flyer bindings
+  const qrTarget = (CONFIG.qrDataUrl && CONFIG.qrDataUrl.trim()) ? CONFIG.qrDataUrl.trim() : CONFIG.signupUrl;
+
+  // Fill print fields
+  const printAddress = document.getElementById('printAddress');
+  const printPhone = document.getElementById('printPhone');
+  const printEmail = document.getElementById('printEmail');
+  const printUrl = document.getElementById('printUrl');
+  if (printAddress) printAddress.textContent = CONFIG.address;
+  if (printPhone) printPhone.textContent = CONFIG.phone;
+  if (printEmail) printEmail.textContent = CONFIG.email;
+  if (printUrl) printUrl.textContent = qrTarget;
+
+  // Generate QR (external free generator; reliable for flyers)
+  const qrImg = document.getElementById('qrImg');
+  if (qrImg && qrTarget && !qrTarget.includes('example.com')) {
+    const encoded = encodeURIComponent(qrTarget);
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encoded}`;
+  }
+
+  // Print button
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) printBtn.addEventListener('click', () => window.print());
+
+  // Рік у футері
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
