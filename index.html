@@ -145,6 +145,38 @@
       .hero::before{background-attachment: scroll;}
     }
 
+    /* === MOBILE HEADER LAYOUT (phone) === */
+    @media (max-width: 640px){
+      .nav{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px 16px;
+      }
+      .brand{
+        justify-content: center;
+      }
+      .navlinks{
+        justify-content: center;
+        gap: 10px;
+      }
+      /* language buttons row */
+      .navlinks .tinybtn{
+        padding: 10px 12px;
+        border-radius: 12px;
+        min-width: 56px;
+      }
+      /* make text links wrap nicely */
+      .nav a{
+        font-size: 14px;
+      }
+      /* CTA buttons full-width for clarity */
+      .cta, .printbtn{
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border:1px solid rgba(255,255,255,.10);
