@@ -146,30 +146,54 @@
     }
 
     /* === MOBILE HEADER LAYOUT (phone) === */
+    .menu-toggle{
+      display:none;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight: 900;
+      cursor: pointer;
+      line-height: 1;
+      font-size: 18px;
+    }
+
     @media (max-width: 640px){
       .nav{
-        flex-direction: column;
-        align-items: stretch;
+        /* keep header compact: logo + burger on first row */
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
         gap: 10px;
         padding: 12px 16px;
       }
-      .brand{
-        justify-content: center;
+      .brand{justify-content:flex-start;}
+
+      /* show burger, hide links until opened */
+      .menu-toggle{display:inline-flex; align-items:center; justify-content:center;}
+      .navlinks{display:none;}
+
+      /* opened state */
+      #siteHeader.open .nav{
+        /* allow wrapping below when open */
+        flex-wrap: wrap;
       }
-      .navlinks{
+      #siteHeader.open .navlinks{
+        display:flex;
+        width:100%;
         justify-content: center;
         gap: 10px;
+        margin-top: 10px;
       }
+
       /* language buttons row */
       .navlinks .tinybtn{
         padding: 10px 12px;
         border-radius: 12px;
         min-width: 56px;
       }
-      /* make text links wrap nicely */
-      .nav a{
-        font-size: 14px;
-      }
+
       /* CTA buttons full-width for clarity */
       .cta, .printbtn{
         width: 100%;
@@ -374,12 +398,15 @@
 </head>
 <body>
 
-<header>
+<header id="siteHeader">
   <div class="nav">
     <div class="brand">
       <img src="images/merkur_kleve.png" alt="Merkur 95 Kleve e.V. Logo" style="height:64px; width:auto; display:block;" />
     </div>
-    <div class="navlinks">
+
+    <!-- Mobile burger button (shown on phones) -->
+    <button class="menu-toggle" type="button" id="menuToggle" aria-label="Menu" aria-controls="navLinks" aria-expanded="false">☰</button>
+    <div class="navlinks" id="navLinks">
       <button class="tinybtn" onclick="setLang('de')">DE</button>
       <button class="tinybtn" onclick="setLang('en')">EN</button>
       <button class="tinybtn" onclick="setLang('uk')">UA</button>
@@ -811,6 +838,45 @@
 
   // Рік у футері
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // === Mobile burger menu ===
+  const headerEl = document.getElementById('siteHeader');
+  const toggleBtn = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  function closeMenu(){
+    if (!headerEl) return;
+    headerEl.classList.remove('open');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded','false');
+  }
+
+  function toggleMenu(){
+    if (!headerEl) return;
+    const isOpen = headerEl.classList.toggle('open');
+    if (toggleBtn) toggleBtn.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
+
+  // close menu when a link/button is tapped (mobile)
+  if (navLinks){
+    navLinks.addEventListener('click', (e)=>{
+      const t = e.target;
+      if (!(t instanceof HTMLElement)) return;
+      // close on anchors and primary actions; keep open on language buttons if you prefer
+      if (t.matches('a, .cta, .printbtn')) closeMenu();
+    });
+  }
+
+  // close on Escape
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // close when switching to desktop width
+  window.addEventListener('resize', ()=>{
+    if (window.innerWidth > 640) closeMenu();
+  });
 </script>
 </body>
 </html>
